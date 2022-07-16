@@ -1,7 +1,8 @@
 import type { NextPage } from "next"
 import Head from "next/head"
-import { useSession } from "next-auth/react"
 
+import Link from "next/link"
+import {getSession, signIn, signOut, useSession} from "next-auth/react"
 
 const Home: NextPage = () => {
 
@@ -9,6 +10,11 @@ const { data: session } = useSession()
 
 console.log(session)
 
+    const getSession = async (e: any) => {
+    e.preventDefault()
+       await  fetch('api/posts', {method: 'POST'})
+    }
+    
   return (
     <>
       <Head>
@@ -20,6 +26,61 @@ console.log(session)
       <h2>
         Hello
       </h2>
+
+
+        <div >
+            <p
+            
+            >
+                {!session && (
+                    <>
+              <span >
+                You are not signed in
+              </span>
+                        <button
+                            href={`/api/auth/signin`}
+                            className=" btn btn-primary"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                signIn()
+                            }}
+                        >
+                            Sign in
+                        </button>
+                    </>
+                )}
+                {session?.user && (
+                    <>
+                        {session.user.image && (
+                            <span
+                                style={{ backgroundImage: `url('${session.user.image}')` }}
+                            
+                            />
+                        )}
+                        <span >
+                <small>Signed in as</small>
+                <br />
+                <strong>{ session.user.name}</strong>
+              </span>
+
+
+                        <button
+                            href={`/api/auth/signout`}
+                            className=" btn btn-primary"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                signOut()
+                            }}
+                        >
+                            Sign out
+                        </button>
+                    <button onClick={getSession}>GetSession</button>
+
+                    </>
+                )}
+            </p>
+            {/*<button onClick={testPost}>Get session</button>*/}
+        </div>
       
     </>
   );
