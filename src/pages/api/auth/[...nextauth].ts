@@ -5,8 +5,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 // Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "../../../server/db/client";
+import { PrismaClient } from "@prisma/client"
 
+// import {prisma} from "@prisma/client";
+const prisma = new PrismaClient()
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
@@ -32,7 +34,7 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials, _req) {
-        const user = { id: 1, name: credentials?.name ?? "J Smith" };
+        const user = { id: 1, name: credentials?.name ?? "S Simms" };
         return user;
       },
     }),
