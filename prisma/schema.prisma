@@ -2,14 +2,16 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = "file:./db.sqlite"
-    // url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
+
+
+
 
 model Example {
     id String @id @default(cuid())
@@ -71,3 +73,4 @@ model Post {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
+//note run prisma db push to push to db since we are using supabase
