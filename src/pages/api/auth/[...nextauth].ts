@@ -1,4 +1,5 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
+
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -9,8 +10,21 @@ import { PrismaClient } from "@prisma/client"
 
 // import {prisma} from "@prisma/client";
 const prisma = new PrismaClient()
+const log = console.log;
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
+  debug: true,
+  logger: {
+    error(code, metadata) {
+      console.error(code, metadata)
+    },
+    warn(code) {
+      console.warn(code)
+    },
+    debug(code, metadata) {
+      console.debug(code, metadata)
+    }
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     // GithubProvider({
@@ -44,3 +58,4 @@ export const authOptions: NextAuthOptions = {
 };
 
 export default NextAuth(authOptions);
+//NEXTAUTH_URL=https://v-auth.vercel.app/
