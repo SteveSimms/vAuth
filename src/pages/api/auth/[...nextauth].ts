@@ -24,6 +24,7 @@ export const authOptions: NextAuthOptions = {
       ,
 
     }),
+      // secret: process.env.NEXTAUTH_SECRET,
     // ...add more providers here
     CredentialsProvider({
       name: "Credentials",
