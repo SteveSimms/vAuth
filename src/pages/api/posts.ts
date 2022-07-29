@@ -2,7 +2,7 @@ import type {NextApiRequest, NextApiResponse} from "next";
 
 
 import {PrismaClient} from "@prisma/client"
-
+// https://stepzen.com/blog/rest-to-graphql
 // import {prisma} from "@prisma/client";
 const prisma = new PrismaClient()
 
