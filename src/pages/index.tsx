@@ -8,7 +8,7 @@ const log = console.log
 
 const Home: NextPage = () => {
 
-const { data: session } = useSession()
+const { data: session }: any = useSession()
     
 
 console.log(typeof session)
@@ -103,6 +103,7 @@ console.log(typeof session)
 };
 
 
+// @ts-ignore
 export const PostForm = ({session}) => {
 console.log(typeof session)
     // const [title, setTitle] = useState('')
