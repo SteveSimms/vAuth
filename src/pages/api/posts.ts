@@ -18,7 +18,7 @@ const createPost  = async (req: NextApiRequest, res: NextApiResponse)=>{
    
         //Process post request
         const user = await prisma.user.findUnique({
-            where: {email:  session?.user?.email!å}
+            where: {email:  session?.user?.email!}
         })
 
         if(!req.body.title || !req.body.content) {
