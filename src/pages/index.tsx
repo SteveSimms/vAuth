@@ -44,16 +44,21 @@ console.log(session)
               <span >
                 You are not signed in
               </span>
-                        <button
-                            href={`/api/auth/signin`}
-                            className=" btn btn-primary"
-                            onClick={(e) => {
-                                e.preventDefault()
-                                signIn()
-                            }}
-                        >
-                            Sign in
-                        </button>
+                        <Link  href={`/api/auth/signin`}>
+
+                            <button
+
+                                className=" btn btn-primary"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    signIn()
+                                }}
+                            >
+                                Sign in
+                            </button>
+                            
+                        </Link>
+                       
                     </>
                 )}
                 {session?.user && (
@@ -70,17 +75,19 @@ console.log(session)
                 <strong>{ session.user.name}</strong>
               </span>
 
+                        <Link  href={`/api/auth/signout`}>
+                            <button
 
-                        <button
-                            href={`/api/auth/signout`}
-                            className=" btn btn-primary"
-                            onClick={(e) => {
-                                e.preventDefault()
-                                signOut()
-                            }}
-                        >
-                            Sign out
-                        </button>
+                                className=" btn btn-primary"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    signOut()
+                                }}
+                            >
+                                Sign out
+                            </button>
+                        </Link>
+                       
                     <button onClick={getSession}>GetSession</button>
 
                     </>
