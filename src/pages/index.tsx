@@ -11,7 +11,7 @@ const Home: NextPage = () => {
 const { data: session } = useSession()
     
 
-console.log(session)
+console.log(typeof session)
 
     const getSession = async (e: any) => {
     e.preventDefault()
@@ -103,7 +103,8 @@ console.log(session)
 };
 
 
-export const PostForm = ({session: any}) => {
+export const PostForm = ({session}) => {
+console.log(typeof session)
     // const [title, setTitle] = useState('')
     // const [content, setContent] = useState('')
     const [formData, setFormData] = useState({
@@ -122,10 +123,10 @@ export const PostForm = ({session: any}) => {
         const target = event.target;
 
         //this is the value of the input, the value in the text box the user types into
-        const formDataValue = target.value;
+        const formDataValue: string = target.value;
 
         //this is the name (so be sure to give your form fields a name attribute)
-        const nameOfField = target.name;
+        const nameOfField: string = target.name;
         log({nameOfField, formDataValue})
         //if there isnt data coming from the router listen to the create action on the form
 
@@ -134,7 +135,7 @@ export const PostForm = ({session: any}) => {
             log("updater onChange", {prevState});
 
             // copy the personData object from state using the spread operator
-            const newFriendObject = {
+            const newFriendObject: any = {
                 ...prevState,
             };
 
